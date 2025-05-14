@@ -1,125 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naruto Moveset</title>
-    <style>
-        body {
-            background-color: #121212;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            color: white;
-        }
-        .container {
-            width: 60%;
-            margin: auto;
-            margin-top: 30px;
-            background: #1e1e1e;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.1);
-            text-align: left;
-        }
-        .header h1 {
-            font-size: 22px;
-            margin: 0;
-            color: #fff;
-        }
-        .meta {
-            font-size: 12px;
-            color: #bbb;
-        }
-        .code-container {
-            background: #2a2a2a;
-            color: #d4d4d4;
-            font-family: monospace;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 14px;
-            overflow-x: auto;
-            position: relative;
-        }
-        .code-container pre {
-            margin: 0;
-        }
-        .buttons {
-            margin-top: 10px;
-            display: flex;
-            gap: 10px;
-        }
-        .btn {
-            background-color: #3a3a3a;
-            color: white;
-            border: none;
-            padding: 7px 12px;
-            font-size: 13px;
-            cursor: pointer;
-            border-radius: 5px;
-            text-transform: lowercase;
-            transition: background 0.3s ease;
-        }
-        .btn:hover {
-            background-color: #555;
-        }
-        /* Copied Notification */
-        .copied-message {
-            position: fixed;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: -50px; /* Starts hidden */
-            background: #4caf50;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
-            font-size: 14px;
-            font-weight: bold;
-            opacity: 0;
-            transition: bottom 0.5s ease-in-out, opacity 0.5s ease-in-out;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Made by Hazem</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #0a0a40;
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+      overflow: hidden;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .screen {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      opacity: 1;
+      transition: opacity 1s ease;
+    }
+
+    .hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .title {
+      font-size: 3em;
+      font-weight: bold;
+      text-shadow: 0 0 10px #00f0ff;
+      animation: floatTitle 3s ease-in-out infinite;
+      text-align: center;
+    }
+
+    /* Open button fixed at the top right */
+    .top-button {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      background-color: #222;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      padding: 12px 20px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      background-color: #ffffff10;
+      color: white;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    }
+
+    input::placeholder {
+      color: #ccc;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #1e90ff;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 10px #1e90ff88;
+    }
+
+    .progress-bar {
+      width: 300px;
+      height: 20px;
+      background-color: #ffffff22;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background-color: #00ffcc;
+      transition: width 1s linear;
+    }
+
+    .info-panel {
+      width: 90%;
+      height: 80%;
+      background-color: #111;
+      border-radius: 12px;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .divider {
+      width: 100%;
+      height: 2px;
+      background-color: white;
+      margin: 20px 0;
+    }
+
+    .red {
+      color: red;
+    }
+
+    #final-message {
+      font-size: 1.8em;
+      color: #ff4c4c;
+      animation: popIn 1s ease-out forwards;
+      text-align: center;
+      padding: 20px;
+    }
+
+    @keyframes floatTitle {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="header">
-            <h1>Naruto moveset</h1>
-            <span class="meta">Date of Release: March 30, 2025</span>
-        </div>
-        <div class="code-container">
-            <pre id="pasteContent">loadstring(game:HttpGet("https://raw.githubusercontent.com/LolnotaKid/NarutoBeatUpSasukeAss/refs/heads/main/NarutoCums"))()</pre>
-        </div>
-        <div class="buttons">
-            <button class="btn" onclick="copyText()">copy</button>
-        </div>
+  <!-- Open button fixed at the top right -->
+  <button class="top-button" onclick="openInfo()">Open</button>
+
+  <!-- Screen 1 -->
+  <div id="screen1" class="screen">
+    <h1 class="title">Made by Hazem</h1>
+    <input type="text" placeholder="Enter username">
+    <button onclick="goToLoading()">Enter</button>
+  </div>
+
+  <!-- Loading Screen -->
+  <div id="screen2" class="screen hidden">
+    <h2 id="loading-text">Loading...</h2>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill"></div>
     </div>
+  </div>
 
-    <!-- Copied Message -->
-    <div id="copiedMessage" class="copied-message">Copied!</div>
+  <!-- Password Entry -->
+  <div id="screen3" class="screen hidden">
+    <label for="password">Enter your password to get 50–100 Robux (not guaranteed)</label>
+    <input type="password" placeholder="Enter password">
+    <button onclick="finalTroll()">Claim</button>
+  </div>
 
-    <script>
-        function copyText() {
-            const text = document.getElementById("pasteContent").innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                showCopiedMessage();
-            });
+  <!-- Final Joke Screen -->
+  <div id="screen4" class="screen hidden">
+    <div id="final-message">Thanks For giving it NERD LOL</div>
+  </div>
+
+  <!-- Info Panel -->
+  <div id="info-screen" class="screen hidden">
+    <div class="info-panel">
+      <p>This is not a <span class="red">Scam</span>. For those who think it is, read the other part.</p>
+      <div class="divider"></div>
+      <p>We sincerely ask you and hope you all listen. We only receive 30 requests from you all and it will take up to 3–7 hours to get you the Robux. It will take days for it to get to you due to the pending. Thank you.</p>
+      <button onclick="closeInfo()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const durations = [27, 31, 37, 47];
+    const duration = durations[Math.floor(Math.random() * durations.length)];
+    let progress = 0;
+
+    function switchScreens(hideId, showId) {
+      document.getElementById(hideId).classList.add('hidden');
+      setTimeout(() => {
+        document.getElementById(showId).classList.remove('hidden');
+      }, 500);
+    }
+
+    function goToLoading() {
+      switchScreens('screen1', 'screen2');
+      document.getElementById("loading-text").textContent = `Loading... This will take ${duration} seconds`;
+
+      const fill = document.getElementById("progress-fill");
+      const step = 100 / duration;
+      const interval = setInterval(() => {
+        progress += step;
+        fill.style.width = `${progress}%`;
+        if (progress >= 100) {
+          clearInterval(interval);
+          switchScreens('screen2', 'screen3');
         }
+      }, 1000);
+    }
 
-        function showCopiedMessage() {
-            const message = document.getElementById("copiedMessage");
-            message.style.bottom = "30px"; // Slide up
-            message.style.opacity = "1"; // Show
+    function finalTroll() {
+      switchScreens('screen3', 'screen4');
+    }
 
-            setTimeout(() => {
-                message.style.opacity = "0"; // Fade out
-                setTimeout(() => {
-                    message.style.bottom = "-50px"; // Move back down after fading
-                }, 500);
-            }, 3000);
-        }
-    </script>
+    function openInfo() {
+      switchScreens('screen1', 'info-screen');
+    }
 
+    function closeInfo() {
+      switchScreens('info-screen', 'screen1');
+    }
+  </script>
 </body>
 </html>
